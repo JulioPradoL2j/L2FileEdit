@@ -1,0 +1,17 @@
+2026.02.28 17:35:20,197	INFO	32	net.sf.l2jdev.L2FileEdit	---------------------------------------
+2026.02.28 17:35:20,241	INFO	32	net.sf.l2jdev.L2FileEdit	Open file: ItemName_ClassicAden-eu.dat
+2026.02.28 17:35:20,259	INFO	49	net.sf.l2jdev.L2FileEdit	File ItemName_ClassicAden-eu.dat encrypted. Lineage2Ver413 decrypt ...
+2026.02.28 17:35:20,710	INFO	49	net.sf.l2jdev.L2FileEdit	Decrypt ItemName_ClassicAden-eu.dat file successfully by v413_encdec decrypter.
+2026.02.28 17:35:20,711	INFO	49	net.sf.l2jdev.L2FileEdit	Read the file structure ...
+2026.02.28 17:35:20,736	INFO	49	net.sf.l2jdev.L2FileEdit	Unpacking [L2GameDataName.dat]
+2026.02.28 17:35:21,438	INFO	49	net.sf.l2jdev.L2FileEdit	GameDataName: Load 144725 count.
+2026.02.28 17:35:21,617	WARNING	49	net.sf.l2jdev.xml.DescriptorParser	Enum [item_default_action] Enum var not found! var: 37
+2026.02.28 17:35:21,712	WARNING	49	net.sf.l2jdev.xml.DescriptorParser	Enum [item_default_action] Enum var not found! var: 38
+2026.02.28 17:35:21,713	WARNING	49	net.sf.l2jdev.xml.DescriptorParser	Enum [item_default_action] Enum var not found! var: 38
+2026.02.28 17:35:21,714	WARNING	49	net.sf.l2jdev.xml.DescriptorParser	Enum [item_default_action] Enum var not found! var: 38
+2026.02.28 17:35:21,762	WARNING	49	net.sf.l2jdev.xml.DescriptorParser	Enum [item_default_action] Enum var not found! var: 39
+2026.02.28 17:35:21,773	WARNING	49	net.sf.l2jdev.xml.DescriptorParser	Enum [item_default_action] Enum var not found! var: 39
+2026.02.28 17:35:22,142	INFO	49	net.sf.l2jdev.L2FileEdit	Completed.
+2026.02.28 17:36:54,115	INFO	32	net.sf.l2jdev.L2FileEdit	---------------------------------------
+2026.02.28 17:36:54,116	INFO	32	net.sf.l2jdev.L2FileEdit	Dumping decrypted bytes of ServerName-eu.dat...
+2026.02.28 17:36:54,297	INFO	56	net.sf.l2jdev.L2FileEdit	DumpDecryptedServerName finished. Check ServerName-eu.dec in application folder.

@@ -1,0 +1,18 @@
+2026.02.28 17:32:33,251	WARNING	3	net.sf.l2jdev.xml.DescriptorParser	Format src file 'SkillNameFormat.java' not found!
+2026.02.28 17:32:33,335	WARNING	3	net.sf.l2jdev.xml.DescriptorParser	Format src file 'SkillNameFormat.java' not found!
+2026.02.28 17:32:33,335	WARNING	3	net.sf.l2jdev.xml.DescriptorParser	Format src file 'SkillNameFormat.java' not found!
+2026.02.28 17:32:33,336	WARNING	3	net.sf.l2jdev.xml.DescriptorParser	Format src file 'SkillNameFormat.java' not found!
+2026.02.28 17:32:47,848	INFO	32	net.sf.l2jdev.L2FileEdit	---------------------------------------
+2026.02.28 17:32:47,851	INFO	32	net.sf.l2jdev.L2FileEdit	Open file: ItemName_ClassicAden-eu.dat
+2026.02.28 17:32:47,874	INFO	49	net.sf.l2jdev.L2FileEdit	File ItemName_ClassicAden-eu.dat encrypted. Lineage2Ver413 decrypt ...
+2026.02.28 17:32:48,315	INFO	49	net.sf.l2jdev.L2FileEdit	Decrypt ItemName_ClassicAden-eu.dat file successfully by v413_encdec decrypter.
+2026.02.28 17:32:48,316	INFO	49	net.sf.l2jdev.L2FileEdit	Read the file structure ...
+2026.02.28 17:32:48,345	INFO	49	net.sf.l2jdev.L2FileEdit	Unpacking [L2GameDataName.dat]
+2026.02.28 17:32:49,056	INFO	49	net.sf.l2jdev.L2FileEdit	GameDataName: Load 144725 count.
+2026.02.28 17:32:49,257	WARNING	49	net.sf.l2jdev.xml.DescriptorParser	Enum [item_default_action] Enum var not found! var: 37
+2026.02.28 17:32:49,392	WARNING	49	net.sf.l2jdev.xml.DescriptorParser	Enum [item_default_action] Enum var not found! var: 38
+2026.02.28 17:32:49,396	WARNING	49	net.sf.l2jdev.xml.DescriptorParser	Enum [item_default_action] Enum var not found! var: 38
+2026.02.28 17:32:49,397	WARNING	49	net.sf.l2jdev.xml.DescriptorParser	Enum [item_default_action] Enum var not found! var: 38
+2026.02.28 17:32:49,435	WARNING	49	net.sf.l2jdev.xml.DescriptorParser	Enum [item_default_action] Enum var not found! var: 39
+2026.02.28 17:32:49,450	WARNING	49	net.sf.l2jdev.xml.DescriptorParser	Enum [item_default_action] Enum var not found! var: 39
+2026.02.28 17:32:49,798	INFO	49	net.sf.l2jdev.L2FileEdit	Completed.

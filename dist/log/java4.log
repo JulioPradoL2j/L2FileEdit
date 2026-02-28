@@ -1,0 +1,8 @@
+2026.02.28 15:36:59,305	INFO	32	net.sf.l2jdev.L2FileEdit	---------------------------------------
+2026.02.28 15:36:59,367	INFO	32	net.sf.l2jdev.L2FileEdit	Open file: ZoneName-eu.dat
+2026.02.28 15:36:59,395	INFO	49	net.sf.l2jdev.L2FileEdit	File ZoneName-eu.dat encrypted. Lineage2Ver413 decrypt ...
+2026.02.28 15:36:59,496	INFO	49	net.sf.l2jdev.L2FileEdit	Decrypt ZoneName-eu.dat file successfully by v413_encdec decrypter.
+2026.02.28 15:36:59,497	INFO	49	net.sf.l2jdev.L2FileEdit	Read the file structure ...
+2026.02.28 15:36:59,524	INFO	49	net.sf.l2jdev.L2FileEdit	Unpacking [L2GameDataName.dat]
+2026.02.28 15:37:00,813	INFO	49	net.sf.l2jdev.L2FileEdit	GameDataName: Load 144725 count.
+2026.02.28 15:37:00,972	INFO	49	net.sf.l2jdev.L2FileEdit	Completed.

@@ -1,0 +1,138 @@
+package net.sf.l2jdev.actions;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import net.sf.l2jdev.L2FileEdit;
+import net.sf.l2jdev.clientcryptor.crypt.DatCrypter;
+import net.sf.l2jdev.data.GameDataName;
+
+public class MassTxtUnpacker extends ActionTask
+{
+	private static final Logger LOGGER = Logger.getLogger(MassTxtUnpacker.class.getName());
+	
+	private final String _chronicle;
+	private final String _path;
+	
+	public MassTxtUnpacker(L2FileEdit l2ClientDat, String chronicle, String path)
+	{
+		super(l2ClientDat);
+		_chronicle = chronicle;
+		_path = path;
+	}
+	
+	@Override
+	public void action()
+	{
+		try
+		{
+			action0();
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.SEVERE, null, e);
+		}
+	}
+	
+	public void action0()
+	{
+		L2FileEdit.addLogConsole("Mass unpacker with using " + _chronicle + " chronicles by path [" + _path + "]", true);
+		
+		final File baseDir = new File(_path);
+		if (!baseDir.exists())
+		{
+			L2FileEdit.addLogConsole("Directory [" + _path + "] does not exists.", true);
+			return;
+		}
+		
+		final String unpackDirPath = _path + "/unpacked";
+		final File unpackDir = new File(unpackDirPath);
+		if (!unpackDir.exists() && !unpackDir.mkdir())
+		{
+			L2FileEdit.addLogConsole("Cannot create recrypt directory [" + unpackDirPath + "].", true);
+			return;
+		}
+		
+		final File[] files = baseDir.listFiles(pathname -> pathname.getName().toLowerCase().endsWith(".dat") || pathname.getName().toLowerCase().endsWith(".ini") || pathname.getName().toLowerCase().endsWith(".htm"));
+		if ((files == null) || (files.length == 0))
+		{
+			L2FileEdit.addLogConsole("Directory [" + _path + "] is empty.", true);
+			return;
+		}
+		
+		GameDataName.getInstance().clear();
+		final long startTime = System.currentTimeMillis();
+		double progress = getCurrentProgress();
+		final double progressWeight = 100.0 / files.length;
+		
+		for (File file : files)
+		{
+			if (isCancelled())
+			{
+				L2FileEdit.addLogConsole("Cancelled.", true);
+				return;
+			}
+			
+			try (FileInputStream fis = new FileInputStream(file))
+			{
+				L2FileEdit.addLogConsole("Start unpacking [" + file.getName() + "]...", true);
+				if (fis.available() < 28)
+				{
+					L2FileEdit.addLogConsole("[" + file.getName() + "] is too small.", true);
+				}
+				else
+				{
+					final byte[] head = new byte[28];
+					fis.read(head);
+					fis.close();
+					final String header = new String(head, StandardCharsets.UTF_16LE);
+					if (!header.matches("Lineage2Ver41[1-4]"))
+					{
+						L2FileEdit.addLogConsole("[" + file.getName() + "] not encrypted. Skip decrypt.", true);
+					}
+					else
+					{
+						final String text = OpenDat.start(this, progressWeight, _chronicle, file, true);
+						if (text == null)
+						{
+							L2FileEdit.addLogConsole("Cannot parse [" + file.getName() + "]", true);
+						}
+						else if (!text.isEmpty())
+						{
+							final DatCrypter crypter = OpenDat.getLastDatCrypter(file);
+							String charset = "UTF-8";
+							String name = file.getName();
+							if (crypter.isUseStructure() && file.getName().endsWith(".dat"))
+							{
+								name = name.replace(".dat", ".txt");
+							}
+							else if (name.endsWith(".htm"))
+							{
+								charset = "UTF-16";
+							}
+							
+							Files.write(Paths.get(unpackDirPath, name), text.getBytes(charset));
+							L2FileEdit.addLogConsole("Success unpacked [" + file.getName() + "]", true);
+						}
+					}
+				}
+			}
+			catch (Exception e3)
+			{
+				LOGGER.log(Level.WARNING, ("[" + file.getName() + "] decrypt failed."));
+			}
+			finally
+			{
+				progress = addProgress(progress, progressWeight, 100.0);
+			}
+		}
+		
+		final long diffTime = (System.currentTimeMillis() - startTime) / 1000L;
+		L2FileEdit.addLogConsole("Completed. Elapsed ".concat(String.valueOf(diffTime)).concat(" sec"), true);
+	}
+}

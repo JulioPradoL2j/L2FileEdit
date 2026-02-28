@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<project name="La2FileEdit" default="cleanup" basedir=".">
+
+	<property name="build" location="../build" />
+	<property name="build.bin" location="${build}/bin" />
+	<property name="build.dist" location="${build}/dist" />
+	<property name="build.dist.libs" location="${build.dist}/libs" />
+	<property name="dist" location="dist" />
+	<property name="libs" location="${dist}/libs" />
+	<property name="src" location="java" />
+
+	<target name="checkRequirements" description="Check Requirements.">
+		<fail message="Ant 1.8.2 is required. But your version is ${ant.version} and if you are using Eclipse probably is outdated.">
+			<condition>
+				<not>
+					<antversion atleast="1.8.2" />
+				</not>
+			</condition>
+		</fail>
+		<available classname="java.util.stream.Stream" property="JDK25.present" />
+		<fail unless="JDK25.present" message="Java 25 is required. But your version is Java ${ant.java.version} and probably JDK is not installed." />
+	</target>
+
+	<target name="init" depends="checkRequirements" description="Create the output directories.">
+		<delete dir="${build.bin}" quiet="true" />
+		<mkdir dir="${build.bin}" />
+	</target>
+
+	<target name="compile" depends="init" description="Compile the source.">
+		<javac srcdir="${src}" destdir="${build.bin}" compiler="modern" debug="true" debuglevel="lines,vars,source" includeantruntime="false" source="25" target="25" encoding="UTF-8" />
+	</target>
+
+	<target name="jar" depends="compile" description="Create the jar files.">
+		<tstamp>
+			<format property="time.stamp" pattern="yyyy-MM-dd HH:mm:ss z" />
+		</tstamp>
+
+		<jar destfile="${build.dist.libs}/L2FileEdit.jar" level="9">
+			<fileset dir="${build.bin}" />
+			<manifest>
+				<attribute name="Build-By" value="${user.name}" />
+				<attribute name="Build-Date" value="${time.stamp}" />
+				<attribute name="Main-Class" value="net.sf.l2jdev.L2FileEdit" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="adding-core" depends="jar" description="Adding the compiled jars to the Zip file.">
+		<zip destfile="${build}/La2FileEdit.zip" basedir="${build.dist}" level="9" />
+	</target>
+
+	<target name="adding-dist" depends="adding-core" description="Updating the Zip file with distribution content.">
+		<zip destfile="${build}/La2FileEdit.zip" basedir="${dist}" excludes="**/*-sources.jar" update="true" level="9" />
+	</target>
+
+	<target name="cleanup" depends="adding-dist" description="Cleaning the build folder.">
+		<delete dir="${build.dist}" />
+	</target>
+</project>

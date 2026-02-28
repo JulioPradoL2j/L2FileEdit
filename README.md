@@ -39,7 +39,8 @@ Quando o Encrypt está como `Source`, o editor tenta **salvar o .dat usando a me
 
 ## 🖼️ Screenshots
 
-> Coloque suas imagens em `docs/img/` e descomente:
+> <img width="776" height="481" alt="image" src="https://github.com/user-attachments/assets/f091202d-d5b7-4a3e-bce1-38173134bf9c" />
+
 
 <!--
 ![Main UI](docs/img/main-ui.png)
